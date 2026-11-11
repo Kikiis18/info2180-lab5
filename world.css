@@ -132,15 +132,33 @@ main {
 	transition: background-color 150ms ease, transform 150ms ease;
 }
 
+#lookup-cities {
+	padding: 0.85rem 1.35rem;
+	border: 1px solid var(--accent);
+	border-radius: 0.55rem;
+	background: #ffffff;
+	color: var(--accent-dark);
+	font: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+#lookup-cities:hover {
+	background: #eaf3f2;
+}
+
 #lookup:hover {
 	background: var(--accent-dark);
 }
 
-#lookup:active {
+#lookup:active,
+#lookup-cities:active {
 	transform: translateY(1px);
 }
 
-#lookup:focus-visible {
+#lookup:focus-visible,
+#lookup-cities:focus-visible {
 	outline: 3px solid #78cdb5;
 	outline-offset: 3px;
 }
@@ -162,19 +180,19 @@ main {
 	border-radius: 0.55rem;
 }
 
-.country-table {
+.results-table {
 	width: 100%;
 	border-collapse: collapse;
 	text-align: left;
 }
 
-.country-table th,
-.country-table td {
+.results-table th,
+.results-table td {
 	padding: 0.8rem 1rem;
 	border-bottom: 1px solid var(--line);
 }
 
-.country-table th {
+.results-table th {
 	background: #eaf3f2;
 	color: #244b50;
 	font-size: 0.82rem;
@@ -182,22 +200,26 @@ main {
 	letter-spacing: 0.025em;
 }
 
-.country-table tbody tr:nth-child(even) {
+.results-table tbody tr:nth-child(even) {
 	background: #f5f9f9;
 }
 
-.country-table tbody tr:hover {
+.results-table tbody tr:hover {
 	background: #edf6f4;
 }
 
-.country-table tbody tr:last-child td {
+.results-table tbody tr:last-child td {
 	border-bottom: 0;
 }
 
-.country-table .no-results {
+.results-table .no-results {
 	padding: 1.25rem 1rem;
 	color: var(--muted);
 	text-align: center;
+}
+
+.error-state {
+	color: #a33333;
 }
 
 .empty-state {
@@ -213,7 +235,7 @@ main {
 		padding: 2.75rem 1rem 4.5rem;
 	}
 
-	.country-table {
+	.results-table {
 		min-width: 600px;
 	}
 
@@ -221,7 +243,8 @@ main {
 		flex-direction: column;
 	}
 
-	#lookup {
+	#lookup,
+	#lookup-cities {
 		width: 100%;
 	}
 }

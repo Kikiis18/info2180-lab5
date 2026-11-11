@@ -1,17 +1,34 @@
 window.onload = function () {
-    let button = document.getElementById("lookup");
+    const countryInput = document.getElementById("country");
+    const result = document.getElementById("result");
 
-    button.addEventListener("click", function () {
+    function lookup(lookupType) {
+        const params = new URLSearchParams({ country: countryInput.value });
+        if (lookupType === "cities") {
+            params.set("lookup", "cities");
+        }
 
-        let country = document.getElementById("country").value;
-
-        fetch(`world.php?country=${encodeURIComponent(country)}`)
-            .then(response => response.text())
+        fetch(`world.php?${params.toString()}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+                return response.text();
+            })
             .then(data => {
-                document.getElementById("result").innerHTML = data;
+                result.innerHTML = data;
             })
             .catch(error => {
-                console.log(error);
+                console.error("Could not retrieve lookup results:", error);
+                result.innerHTML = '<p class="empty-state error-state">Unable to load results. Please try again.</p>';
             });
+    }
+
+    document.getElementById("lookup").addEventListener("click", function () {
+        lookup("countries");
+    });
+
+    document.getElementById("lookup-cities").addEventListener("click", function () {
+        lookup("cities");
     });
 };

@@ -156,20 +156,48 @@ main {
 	font-size: 1.15rem;
 }
 
-#result ul {
-	display: grid;
-	gap: 0.65rem;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+.table-wrapper {
+	overflow-x: auto;
+	border: 1px solid var(--line);
+	border-radius: 0.55rem;
 }
 
-#result li {
-	padding: 0.9rem 1rem;
-	border: 1px solid var(--line);
-	border-left: 3px solid var(--accent);
-	border-radius: 0.45rem;
-	background: #fbfdfd;
+.country-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+.country-table th,
+.country-table td {
+	padding: 0.8rem 1rem;
+	border-bottom: 1px solid var(--line);
+}
+
+.country-table th {
+	background: #eaf3f2;
+	color: #244b50;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.025em;
+}
+
+.country-table tbody tr:nth-child(even) {
+	background: #f5f9f9;
+}
+
+.country-table tbody tr:hover {
+	background: #edf6f4;
+}
+
+.country-table tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.country-table .no-results {
+	padding: 1.25rem 1rem;
+	color: var(--muted);
+	text-align: center;
 }
 
 .empty-state {
@@ -183,6 +211,10 @@ main {
 @media (max-width: 520px) {
 	header {
 		padding: 2.75rem 1rem 4.5rem;
+	}
+
+	.country-table {
+		min-width: 600px;
 	}
 
 	.search-row {
